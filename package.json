@@ -1,0 +1,19 @@
+{
+  "name": "express-server",
+  "version": "1.0.0",
+  "description": "programs of diamond and equilateral patterns",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aamil-Successive/express-server.git"
+  },
+  "author": "Aamil Ali",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aamil-Successive/express-server/issues"
+  },
+  "homepage": "https://github.com/Aamil-Successive/express-server#readme"
+}
