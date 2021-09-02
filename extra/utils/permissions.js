@@ -1,4 +1,4 @@
-permissions = 
+const permissions = 
 {
     'getUsers': {
     all: ['head-trainer'],
@@ -8,19 +8,18 @@ permissions =
     }
 }
 
-const hasPermission = (moduleName, role, permissionType) =>{
-    
-    let found = false
-    const obj = permissions[moduleName]   
-    const permission = obj[permissionType]    
-    permission.forEach(element => {   
-        if(element == role){
-                found = true      
-                return found
-        }
-    });
+const hasPermission = (moduleName, role, permission_type) => {
 
-    return found          
+    if (permissions[moduleName]['all'].includes(role)){     //Checks if the role has permissions for all
+        return true;
+    }
+    else {
+        if (permissions[moduleName][permission_type].includes(role)) {  //Checks if the role has specific permissions
+            return true;
+        }
+        return false;
+    }
 }
 
 console.log(hasPermission('getUsers','trainer','read'))
+console.log(hasPermission('getUsers','head-trainer','write'))

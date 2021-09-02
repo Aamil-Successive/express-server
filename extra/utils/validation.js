@@ -13,16 +13,14 @@ const users = [
         traineeEmail: 'trainee2@successive.tech',
         reviewerEmail: 'reviewer2@gmail.com',
     },
-    ]
+    ];
     
     const validateEmail=(email)=>{
         
         var validRegex = /^[a-zA-Z0-9.^]+@successive.tech/;
-    
-        if (validRegex.test(email)) 
-            return true;
-      
-        else return false;
+
+        return validRegex.test(email)
+            
     }
     
     var validUsers = []     
