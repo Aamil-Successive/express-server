@@ -1,4 +1,4 @@
-function equilateral (a)
+export default function equilateral (a)
 {
     let string = "";
     console.log("Print a equilateral with rows "+a);
@@ -15,4 +15,3 @@ for (let i = 1; i <= a; i++)
 }
 console.log(string);
 }
-equilateral(process.argv[2]);
