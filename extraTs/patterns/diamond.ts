@@ -1,4 +1,4 @@
-export default function diamond(a) {
+export default function diamond(a: number) {
     let x = '';
     console.log('Print a diamond with rows ' + a);
     for (let i = 1; i <= a; i++) {

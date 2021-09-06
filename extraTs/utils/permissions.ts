@@ -1,11 +1,11 @@
 import { permissions } from '../constants';
-const hasPermission = (moduleName: string, Role: string, PERMISSION_TYPE: string) => {
+const hasPermission = (moduleName: string, role: string, permissionType: string): Boolean => {
 
-    if (permissions[moduleName].all.includes(Role)) {     // Checks if the role has permissions for all
+    if (permissions[moduleName].all.includes(role)) {     // Checks if the role has permissions for all
         return true;
     }
     else {
-        if (permissions[moduleName][PERMISSION_TYPE].includes(Role)) {  // Checks if the role has specific permissions
+        if (permissions[moduleName][permissionType].includes(role)) {  // Checks if the role has specific permissions
             return true;
         }
         return false;

@@ -1,4 +1,4 @@
-export default function equilateral (a) {
+export default function equilateral (a: number) {
     let x = '';
     console.log('Print a equilateral with rows ' + a);
 
