@@ -1,13 +1,4 @@
-const permissions = 
-{
-    'getUsers': {
-    all: ['head-trainer'],
-    read : ['trainee', 'trainer'],
-    write : ['trainer'],
-    delete: [],
-    }
-}
-
+import { permissions } from '../constants';
 const hasPermission = (moduleName, role, permission_type) => {
 
     if (permissions[moduleName]['all'].includes(role)){     //Checks if the role has permissions for all
@@ -19,7 +10,5 @@ const hasPermission = (moduleName, role, permission_type) => {
         }
         return false;
     }
-}
-
-console.log(hasPermission('getUsers','trainer','read'))
-console.log(hasPermission('getUsers','head-trainer','write'))
+};
+export default hasPermission;

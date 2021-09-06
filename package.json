@@ -4,6 +4,7 @@
   "description": "programs of diamond and equilateral patterns",
   "main": "index.js",
   "scripts": {
+    "extra": "npx babel-node extra",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/Aamil-Successive/express-server/issues"
   },
-  "homepage": "https://github.com/Aamil-Successive/express-server#readme"
+  "homepage": "https://github.com/Aamil-Successive/express-server#readme",
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/node": "^7.14.9",
+    "@babel/preset-env": "^7.15.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
 }
