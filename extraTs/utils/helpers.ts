@@ -1,4 +1,4 @@
-export const validateEmail = (email: string): Boolean => {
+export const validateEmail = (email: string): boolean => {
 
     const validRegex = /^[a-zA-Z0-9.^]+@successive.tech/;
 
