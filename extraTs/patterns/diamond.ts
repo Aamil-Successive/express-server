@@ -1,5 +1,5 @@
 export default function diamond(a: number) {
-    let x = '';
+    let x: string = '';
     console.log('Print a diamond with rows ' + a);
     for (let i = 1; i <= a; i++) {
         for (let j = a; j > i; j--) {

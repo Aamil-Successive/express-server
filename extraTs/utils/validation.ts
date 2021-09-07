@@ -1,8 +1,8 @@
 import { validateEmail } from './helpers';
 
     const validateUsers = (users: IUsers[]) => {
-    const validUsers = [];
-    const invalidUsers = [];
+    const validUsers: string[] = [];
+    const invalidUsers: string[] = [];
 
         users.forEach(element => {
             const {traineeEmail} = element;
