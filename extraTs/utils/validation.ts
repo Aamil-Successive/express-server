@@ -1,6 +1,6 @@
 import { validateEmail } from './helpers';
 
-    const validateUsers = (users: IUsers[]): void => {
+const validateUsers = (users: IUsers[]): void => {
     const validUsers: string[] = [];
     const invalidUsers: string[] = [];
 
