@@ -1,6 +1,6 @@
-export default function diamond(a) {
-    let x = '';
-    console.log('Print a diamond with rows ' + a);
+export default function diamond(a: number): void {
+    let x: string = '';
+        console.log('Print a diamond with rows ' + a);
     for (let i = 1; i <= a; i++) {
         for (let j = a; j > i; j--) {
             x += ' ';

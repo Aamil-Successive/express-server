@@ -1,5 +1,5 @@
-export default function equilateral (a) {
-    let x = '';
+export default function equilateral (a: number): void {
+    let x: string = '';
     console.log('Print a equilateral with rows ' + a);
 
 for (let i = 1; i <= a; i++) {

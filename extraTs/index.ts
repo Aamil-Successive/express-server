@@ -2,7 +2,7 @@ import { diamond, equilateral } from './patterns';
 
 import { hasPermission, validateUsers } from  './utils';
 
-const users = [
+const users: IUsers[] = [
     {
         traineeEmail: 'trainee@successive.tech',
         reviewerEmail: 'reviewer@successive.tech',
