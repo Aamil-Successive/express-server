@@ -4,13 +4,11 @@
   "description": "programs of diamond and equilateral patterns",
   "main": "index.js",
   "scripts": {
-    "extra": "npx babel-node extra",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:extra": "babel-node extra",
     "start": "tsc-watch --project . --onSuccess \"npm run nodemon\"",
     "start:src": "tsc-watch --project . --onSuccess \"npm run nodemon:src\"",
-    "nodemon:src": "nodemon ./dist/src/index.js",
-    "nodemon": "nodemon ./dist/extraTs/index.js",
+    "nodemon": "nodemon ./dist/index.js",
     "lint": "node ./node_modules/tslint/bin/tslint -c tslint.json -p tsconfig.json --exclude 'node_modules/**/*.{j,t}s'",
     "lint:fix": "npm run lint --fix",
     "commit": "git-cz"

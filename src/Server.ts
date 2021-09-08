@@ -7,7 +7,7 @@ export default class Server {
      * This is constructor
      * @param config
      */
-    constructor(private config) {
+    constructor(private config: IConfig) {
         this.app = express();
     }
 
@@ -16,7 +16,7 @@ export default class Server {
      * @returns
      */
     setupRoutes = () => {
-        this.app.get('/health-check', (_req, res) => {
+        this.app.get('/health-check', (req, res) => {
             res.send('I am OK');
         });
         return this;
