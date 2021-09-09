@@ -1,4 +1,7 @@
 import * as express from 'express';
+import * as bodyParser from 'body-parser';
+import notFoundRoute from './libs/routes/notFoundRoute';
+import errorHandler from './libs/routes/errorHandler';
 export default class Server {
 
     private app: express.Express;
@@ -17,9 +20,27 @@ export default class Server {
      */
     setupRoutes = () => {
         this.app.get('/health-check', (req, res) => {
-            res.send('I am OK');
+            console.log('/health-check api called');    
+            res.status(200).json({
+                status: 200,
+                message: 'I am OK'
+            });
         });
+        this.app.post('/data', (req, res) => {
+            console.log('/data api called');
+            console.log('post request data', req.body);
+            res.status(200).json({
+                status: 200,
+                message: 'I am OK'
+            });
+        });
+        this.app.use(notFoundRoute);
+        this.app.use(errorHandler);
         return this;
+    }
+    initBodyParser = () => {
+        this.app.use(bodyParser.urlencoded({ extended: false }));
+        this.app.use(bodyParser.json());
     }
 
     /**
@@ -27,6 +48,7 @@ export default class Server {
      * @returns
      */
     bootstrap = () => {
+        this.initBodyParser();
         this.setupRoutes();
         return this;
     }
