@@ -29,8 +29,7 @@ class Trainee {
   put = (req: Request, res: Response, next: NextFunction) => {
     console.log("Put request..!");
     console.log(req.body);
-    const { id } = req.body.id;
-    const { traineeName } = req.body;
+    const { id, traineeName } = req.body;
     if (!traineeName) {
       res.status(404).send({ traineeName: "required", error: "Not Found" });
     } else if (!id) {
@@ -42,9 +41,8 @@ class Trainee {
   delete = (req: Request, res: Response, next: NextFunction) => {
     console.log("Delete request..!");
     console.log(req.body);
-    const { traineeName } = req.body;
-    const { id } = req.body;
-    if (!traineeName) {
+    const { traineeName, id } = req.body;
+      if (!traineeName) {
       res.status(404).send("Not Found! Can not make changes requested!");
     } else if (!id) {
       res.status(400).send({ message: "id not given", error: "Bad Request" });

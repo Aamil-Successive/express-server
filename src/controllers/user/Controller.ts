@@ -29,8 +29,7 @@ class User {
   put = (req: Request, res: Response, next: NextFunction) => {
     console.log("Put request..!");
     console.log(req.body);
-    const { id } = req.body;
-    const { userName } = req.body;
+    const { id, userName } = req.body;
     if (!userName) {
       res.status(404).send({ userName: "required", error: "Not Found" });
     } else if (!id) {
@@ -42,8 +41,7 @@ class User {
   delete = (req: Request, res: Response, next: NextFunction) => {
     console.log("Delete request..!");
     console.log(req.body);
-    const { userName } = req.body;
-    const { id } = req.body;
+    const { userName, id } = req.body;
     if (!userName) {
       res.status(404).send("Not Found! Can not make changes requested!");
     } else if (!id) {
