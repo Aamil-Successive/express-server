@@ -1,53 +1,56 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from "express";
 
 const trainees = [
-  { traineeName: 'Aamil', id: 1 },
-  { traineeName: 'Aman', id: 2 },
-  { traineeName: 'Anurag', id: 3 },
-  { traineeName: 'Animesh', id: 4 },
-  { traineeName: 'Ashar', id: 5 }
+  { traineeName: "Aamil", id: 1 },
+  { traineeName: "Aman", id: 2 },
+  { traineeName: "Anurag", id: 3 },
+  { traineeName: "Animesh", id: 4 },
+  { traineeName: "Ashar", id: 5 },
 ];
 
 class Trainee {
-
   get = (req: Request, res: Response, next: NextFunction) => {
-    console.log('Get request..!');
+    console.log("Get request..!");
     res.status(200).send(trainees);
-  }
+  };
 
   post = (req: Request, res: Response, next: NextFunction) => {
-    console.log('Post request..!');
+    console.log("Post request..!");
     console.log(req.body);
-    const trainee = {
-      traineeName: req.body.name,
-      id: trainees.length + 1
-    };
-    trainees.push(trainee);
-    res.status(200).send(trainee);
-  }
-  
-  put = (req: Request, res: Response, next: NextFunction) => {
-    console.log('Put request..!');
-    console.log(req.body);
-    console.log((req.params.id));
-    const trainee = trainees.find(e => e.id === parseInt(req.params.id, 10));
-    if (!trainee) {
-      res.status(404).send('Not Found! Can not update your request!');
+    const { traineeName } = req.body;
+    if (!traineeName) {
+      return res
+        .status(400)
+        .send({ message: "Trainee name is required", error: "Bad Request" });
     }
-    trainee.traineeName = req.body.name;
-    res.status(200).send(trainee);
-  }
+    return res.status(200).send({ message: "Trainee added successfully" });
+  };
+
+  put = (req: Request, res: Response, next: NextFunction) => {
+    console.log("Put request..!");
+    console.log(req.body);
+    const { id } = req.body.id;
+    const { traineeName } = req.body;
+    if (!traineeName) {
+      res.status(404).send({ traineeName: "required", error: "Not Found" });
+    } else if (!id) {
+      res.status(404).send({ id: "required", error: "Not Found" });
+    }
+    res.status(200).send({ message: "Updated Succesfully" });
+  };
 
   delete = (req: Request, res: Response, next: NextFunction) => {
-    console.log('Delete request..!');
-    const trainee = trainees.find(e => e.id === parseInt(req.params.id, 10));
-    if (!trainee) {
-      res.status(404).send('Not Found! Can not make changes requested!');
+    console.log("Delete request..!");
+    console.log(req.body);
+    const { traineeName } = req.body;
+    const { id } = req.body;
+    if (!traineeName) {
+      res.status(404).send("Not Found! Can not make changes requested!");
+    } else if (!id) {
+      res.status(400).send({ message: "id not given", error: "Bad Request" });
     }
-    const index = trainees.indexOf(trainee);
-    trainees.splice(index, 1);
-    res.status(200).send(trainee);
-  }
+    res.status(200).send({ traineeName: "Deleted Succcessfully" });
+  };
 }
 
 export default new Trainee();
