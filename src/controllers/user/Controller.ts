@@ -17,38 +17,39 @@ class User {
   post = (req: Request, res: Response, next: NextFunction) => {
     console.log("Post request..!");
     console.log(req.body);
-    const { userName } = req.body;
-    if (!userName) {
-      return res
-        .status(400)
-        .send({ message: "User name is required", error: "Bad Request" });
-    }
-    return res.status(200).send({ message: "User added successfully" });
-  };
+    const { name } = req.body;
+    const user = {
+      userName: name,
+      id: users.length + 1
+    };
+    users.push(user);
+    res.status(200).send(user);
+}
 
   put = (req: Request, res: Response, next: NextFunction) => {
     console.log("Put request..!");
     console.log(req.body);
-    const { id, userName } = req.body;
-    if (!userName) {
-      res.status(404).send({ userName: "required", error: "Not Found" });
-    } else if (!id) {
-      res.status(404).send({ id: "required", error: "Not Found" });
+    const { id, name } = req.body;
+    const user = users.find(e => e.id === parseInt(id, 10));
+    if (!user) {
+        res.status(404).send('Not Found! Can not update your request!');
     }
-    res.status(200).send({ message: "Updated Succesfully" });
-  };
+    user.userName = name;
+    res.status(200).send(user);
+}
 
   delete = (req: Request, res: Response, next: NextFunction) => {
     console.log("Delete request..!");
     console.log(req.body);
-    const { userName, id } = req.body;
-    if (!userName) {
-      res.status(404).send("Not Found! Can not make changes requested!");
-    } else if (!id) {
-      res.status(400).send({ message: "id not given", error: "Bad Request" });
+    const { id } = req.params;
+    const user = users.find(e => e.id === parseInt(id, 10));
+    if (!user) {
+        res.status(404).send('Not Found! Can not make changes requested!');
     }
-    res.status(200).send({ userName: "Deleted Succcessfully" });
-  };
+    const index = users.indexOf(user);
+    users.splice(index, 1);
+    res.status(200).send(user);
+}
 }
 
 export default new User();
