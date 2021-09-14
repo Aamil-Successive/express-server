@@ -17,37 +17,38 @@ class Trainee {
   post = (req: Request, res: Response, next: NextFunction) => {
     console.log("Post request..!");
     console.log(req.body);
-    const { traineeName } = req.body;
-    if (!traineeName) {
-      return res
-        .status(400)
-        .send({ message: "Trainee name is required", error: "Bad Request" });
-    }
-    return res.status(200).send({ message: "Trainee added successfully" });
+    const { name } = req.body;
+    const trainee = {
+    traineeName: name,
+    id: trainees.length + 1
   };
+  trainees.push(trainee);
+  res.status(200).send(trainee);
+}
 
   put = (req: Request, res: Response, next: NextFunction) => {
     console.log("Put request..!");
     console.log(req.body);
-    const { id, traineeName } = req.body;
-    if (!traineeName) {
-      res.status(404).send({ traineeName: "required", error: "Not Found" });
-    } else if (!id) {
-      res.status(404).send({ id: "required", error: "Not Found" });
+    const { name, id } = req.body;
+    const trainee = trainees.find(e => e.id === parseInt(id, 10));
+    if (!trainee) {
+      res.status(404).send('Not Found! Can not update your request!');
     }
-    res.status(200).send({ message: "Updated Succesfully" });
-  };
+    trainee.traineeName = name;
+    res.status(200).send(trainee);
+  }
 
   delete = (req: Request, res: Response, next: NextFunction) => {
     console.log("Delete request..!");
     console.log(req.body);
-    const { traineeName, id } = req.body;
-      if (!traineeName) {
-      res.status(404).send("Not Found! Can not make changes requested!");
-    } else if (!id) {
-      res.status(400).send({ message: "id not given", error: "Bad Request" });
+    const { id } = req.params;
+    const trainee = trainees.find(e => e.id === parseInt(id, 10));
+    if (!trainee) {
+      res.status(404).send('Not Found! Can not make changes requested!');
     }
-    res.status(200).send({ traineeName: "Deleted Succcessfully" });
+    const index = trainees.indexOf(trainee);
+    trainees.splice(index, 1);
+    res.status(200).send(trainee);
   };
 }
 
